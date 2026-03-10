@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>4th Qtr Portfolio - Crimson Chronicles</title>
+<link rel="icon" type="image/png" href="assets/peachlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{
+margin:0;
+height:100vh;
+font-family:'Poppins',sans-serif;
+background: url('assets/jennieRUBY.png') no-repeat center center fixed;
+background-size: cover;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+.boot-screen{
+position:fixed;
+inset:0;
+background:#050000;
+color:#ff2b45;
+font-family:'Press Start 2P',cursive;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:boot 3.5s forwards;
+}
+.boot-text{
+font-size:.7rem;
+margin-bottom:20px;
+}
+.terminal{
+font-size:.55rem;
+line-height:1.4;
+text-align:left;
+width:80%;
+max-width:600px;
+min-height:120px;
+}
+@keyframes boot{
+0%{opacity:1}
+85%{opacity:1}
+100%{opacity:0;visibility:hidden}
+}
+.desktop{
+position:relative;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+.desktop-window{
+width:85%;
+max-width:1100px;
+height:85vh;
+background:#0c0c0c;
+border:2px solid #7a0014;
+box-shadow:0 0 30px rgba(255,43,69,.5);
+display:flex;
+flex-direction:column;
+position:absolute;
+opacity:0;
+transform:scale(.6);
+transition:all .8s cubic-bezier(.2,.8,.2,1);
+z-index:10;
+}
+.desktop-window.show{
+opacity:1;
+transform:scale(1);
+}
+.title-bar{
+background:linear-gradient(90deg,#2b0006,#7a0014);
+color:white;
+font-family:'Press Start 2P',cursive;
+font-size:.8rem;
+padding:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:move;
+letter-spacing:2px;
+}
+.window-buttons span{
+display:inline-block;
+width:14px;
+height:14px;
+margin-left:6px;
+background:white;
+}
+.window-content{
+flex:1;
+display:flex;
+overflow:hidden;
+}
+.sidebar{
+width:220px;
+background:#120003;
+border-right:1px solid #7a0014;
+padding:20px;
+}
+.sidebar h2{
+font-family:'Press Start 2P',cursive;
+font-size:.8rem;
+margin-bottom:20px;
+color:#ff2b45;
+}
+.sidebar ul{
+list-style:none;
+padding:0;
+}
+.sidebar li{
+margin-bottom:15px;
+}
+.sidebar a{
+display:block;
+text-decoration:none;
+color:white;
+background:#1b0005;
+border:1px solid #7a0014;
+padding:10px;
+transition:.3s;
+}
+.sidebar a:hover{
+background:#7a0014;
+transform:translateY(-3px);
+}
+.main{
+flex:1;
+padding:40px;
+overflow-y:auto;
+background:rgba(0,0,0,0.6);
+}
+header h1{
+font-family:'Press Start 2P',cursive;
+font-size:1.3rem;
+letter-spacing:1px;
+color:#ff2b45;
+margin-bottom:15px;
+}
+header p{
+font-family:'Poppins',sans-serif;
+font-size:1rem;
+margin-bottom:30px;
+opacity:.85;
+animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-5px);}
+100%{transform:translateY(0);}
+}
+section{
+background:rgba(18,0,3,0.85);
+border:1px solid #7a0014;
+box-shadow:0 0 15px rgba(255,43,69,.35);
+padding:25px;
+margin-bottom:30px;
+animation:floatSoft 5s ease-in-out infinite;
+transition:.3s;
+}
+section:hover{
+transform:translateY(-6px);
+box-shadow:0 0 25px rgba(255,0,60,.5);
+}
+@keyframes floatSoft{
+0%{transform:translateY(0);}
+50%{transform:translateY(-4px);}
+100%{transform:translateY(0);}
+}
+section h2{
+font-family:'Press Start 2P',cursive;
+font-size:.85rem;
+margin-bottom:15px;
+color:#ff2b45;
+}
+footer{
+border-top:1px solid #7a0014;
+padding-top:20px;
+margin-top:30px;
+}
+footer h3{
+font-family:'Press Start 2P',cursive;
+font-size:.85rem;
+margin-bottom:10px;
+color:#ff2b45;
+}
+footer a{
+color:#ff2b45;
+text-decoration:none;
+}
+footer a:hover{
+text-decoration:underline;
+}
+.mini-window{
+position:absolute;
+width:260px;
+height:140px;
+background:#0f0f0f;
+color:#ff2b45;
+border:2px solid #ff2b45;
+font-family:'Press Start 2P',cursive;
+font-size:.6rem;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+box-shadow:0 0 10px rgba(255,43,69,.5);
+animation:flicker .12s infinite alternate;
+z-index:10000;
+}
+@keyframes flicker{
+0%{opacity:.6;transform:scale(.98);}
+100%{opacity:1;transform:scale(1.03);}
+}
+</style>
+</head>
+<body>
+<div class="boot-screen">
+<div class="boot-text">Initializing Final Portfolio...</div>
+<div class="terminal" id="terminal"></div>
+</div>
+<div class="desktop">
+<div class="desktop-window" id="window">
+<div class="title-bar" id="dragBar">
+Final Edition
+<div class="window-buttons">
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class="window-content">
+<div class="sidebar">
+<h2>🍦 PORTFOLIO SECTIONS</h2>
+<ul>
+<li><a href="./public/firstgraded.html"> 📁 Movie Rating</a>
+<li><a href="./public/quarter2.html">📁 aa</a></li>
+<li><a href="./public/quarter3.html">📁 aa/a></li>
+</ul>
+</div>
+<div class="main">
+<header>
+<h1>4th Quarter Portfolio</h1>
+<p>final portfolio of the school year ✨</p>
+</header>
+<section>
+<h2>💎 Personal Chronicle</h2>
+<p>
+This year, I discovered my passion for coding and design, turning ideas into creative projects. I also learned more about myself and my style, and I’m proud of how much I’ve grown.
+</p>
+</section>
+<footer>
+<h3>📬 Connect With Me</h3>
+<p>Email: <a href="mailto:b2029pmlibunao@pshs.edu.ph">b2029pmlibunao@pshs.edu.ph</a></p>
+<div>© 2026 Phipa Libunao 🍦 All rights reserved.</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+<script>
+const windowEl=document.getElementById("window");
+const dragBar=document.getElementById("dragBar");
+const terminal=document.getElementById("terminal");
+let offsetX=0,offsetY=0,isDown=false;
+dragBar.addEventListener("mousedown",e=>{
+isDown=true;
+offsetX=e.clientX-windowEl.offsetLeft;
+offsetY=e.clientY-windowEl.offsetTop;
+});
+document.addEventListener("mouseup",()=>isDown=false);
+document.addEventListener("mousemove",e=>{
+if(!isDown)return;
+windowEl.style.left=e.clientX-offsetX+"px";
+windowEl.style.top=e.clientY-offsetY+"px";
+windowEl.style.position="absolute";
+});
+const lines=[
+"Launching final portfolio...",
+"Compiling achievements...",
+"Rendering creativity...",
+"Final touches applied...",
+"Portfolio ready!"
+];
+let i=0;
+function typeLine(){
+if(i<lines.length){
+terminal.innerHTML+=lines[i]+"<br>";
+i++;
+setTimeout(typeLine,400);
+}
+}
+typeLine();
+function createMiniWindow(){
+const mini=document.createElement("div");
+mini.classList.add("mini-window");
+mini.style.top=Math.random()*(window.innerHeight-160)+"px";
+mini.style.left=Math.random()*(window.innerWidth-280)+"px";
+mini.innerHTML="✨ Portfolio Live ✨";
+document.body.appendChild(mini);
+setTimeout(()=>{mini.remove();},400+Math.random()*600);
+}
+const breachInterval=setInterval(createMiniWindow,200);
+setTimeout(()=>{
+clearInterval(breachInterval);
+windowEl.classList.add("show");
+},3500);
+</script>
+</body>
+</html>
