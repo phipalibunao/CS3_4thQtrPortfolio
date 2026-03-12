@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Homepage>
+<title>Homepage</title>
 <link rel="icon" type="image/png" href="assets/starsheesh.png">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -10,8 +10,8 @@ body{
 margin:0;
 height:100vh;
 font-family:'Poppins',sans-serif;
-background: url('assets/jennieRUBY.png') no-repeat center center fixed;
-background-size: cover;
+background:url('assets/jennieRUBY.png') no-repeat center center fixed;
+background-size:cover;
 overflow:hidden;
 display:flex;
 justify-content:center;
@@ -226,6 +226,7 @@ z-index:10000;
 <div class="boot-text">Initializing Final Portfolio...</div>
 <div class="terminal" id="terminal"></div>
 </div>
+
 <div class="desktop">
 <div class="desktop-window" id="window">
 <div class="title-bar" id="dragBar">
@@ -234,6 +235,7 @@ Final Edition
 <span></span><span></span><span></span>
 </div>
 </div>
+
 <div class="window-content">
 <div class="sidebar">
 <h2>🍦 PORTFOLIO SECTIONS</h2>
@@ -243,43 +245,52 @@ Final Edition
 <li><a href="./public/quarter3.html">📁 aa</a></li>
 </ul>
 </div>
+
 <div class="main">
 <header>
 <h1>4th Quarter Portfolio</h1>
 <p>final portfolio of the school year ✨</p>
 </header>
+
 <section>
 <h2>💎 Chronicles</h2>
 <p>
-This year, I discovered my passion for coding and design, turning ideas into creative projects. I also learned more about myself and my style, and I’m proud of how much I’ve grown.
+this year, i discovered my passion for coding and design, turning ideas na napapaginipan ko lang into creative projects. i also learned more about myself and my style, and i’m proud of how much i’ve grown.
 </p>
 </section>
+
 <footer>
 <h3>📬 Connect With Me</h3>
 <p>Email: <a href="mailto:b2029pmlibunao@pshs.edu.ph">b2029pmlibunao@pshs.edu.ph</a></p>
 <div>© 2026 Phipa Libunao 🍦 All rights reserved.</div>
 </footer>
+
 </div>
 </div>
 </div>
 </div>
+
 <script>
 const windowEl=document.getElementById("window");
 const dragBar=document.getElementById("dragBar");
 const terminal=document.getElementById("terminal");
 let offsetX=0,offsetY=0,isDown=false;
+
 dragBar.addEventListener("mousedown",e=>{
 isDown=true;
 offsetX=e.clientX-windowEl.offsetLeft;
 offsetY=e.clientY-windowEl.offsetTop;
 });
+
 document.addEventListener("mouseup",()=>isDown=false);
+
 document.addEventListener("mousemove",e=>{
 if(!isDown)return;
 windowEl.style.left=e.clientX-offsetX+"px";
 windowEl.style.top=e.clientY-offsetY+"px";
 windowEl.style.position="absolute";
 });
+
 const lines=[
 "Launching final portfolio...",
 "Compiling achievements...",
@@ -287,7 +298,9 @@ const lines=[
 "Final touches applied...",
 "Portfolio ready!"
 ];
+
 let i=0;
+
 function typeLine(){
 if(i<lines.length){
 terminal.innerHTML+=lines[i]+"<br>";
@@ -295,7 +308,9 @@ i++;
 setTimeout(typeLine,400);
 }
 }
+
 typeLine();
+
 function createMiniWindow(){
 const mini=document.createElement("div");
 mini.classList.add("mini-window");
@@ -305,7 +320,9 @@ mini.innerHTML="Portfolio Live";
 document.body.appendChild(mini);
 setTimeout(()=>{mini.remove();},400+Math.random()*600);
 }
+
 const breachInterval=setInterval(createMiniWindow,200);
+
 setTimeout(()=>{
 clearInterval(breachInterval);
 windowEl.classList.add("show");

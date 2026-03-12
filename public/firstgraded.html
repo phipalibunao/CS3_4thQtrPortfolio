@@ -2,195 +2,209 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Movie Ratings
-<link rel="icon" type="image/png" href="assets/starsheesh.png">
+<title>Movie Ratings</title>
+<link rel="icon" type="image/png" href="/assets/starsheesh.png">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 body{
-  font-family:'Poppins',sans-serif;
-  background:radial-gradient(circle at top,#1a0004,#000000 70%);
-  color:white;
-  padding:40px;
+font-family:'Poppins',sans-serif;
+background:radial-gradient(circle at top,#1a0004,#000000 70%);
+color:white;
+padding:40px;
 }
 h1{
-  font-family:'Press Start 2P',cursive;
-  color:#ff2b45;
-  text-align:center;
+font-family:'Press Start 2P',cursive;
+color:#ff2b45;
+text-align:center;
 }
 form{
-  background:#120003;
-  padding:20px;
-  border:1px solid #7a0014;
-  max-width:500px;
-  margin:20px auto;
-  border-radius:8px;
+background:#120003;
+padding:20px;
+border:1px solid #7a0014;
+max-width:500px;
+margin:20px auto;
+border-radius:8px;
 }
 form label{
-  display:block;
-  margin:10px 0 5px;
+display:block;
+margin:10px 0 5px;
 }
 form input, form select{
-  width:100%;
-  padding:8px;
-  margin-bottom:10px;
-  border:1px solid #7a0014;
-  border-radius:4px;
-  background:#1b0005;
-  color:white;
+width:100%;
+padding:8px;
+margin-bottom:10px;
+border:1px solid #7a0014;
+border-radius:4px;
+background:#1b0005;
+color:white;
 }
 .stars{
-  display:flex;
-  margin-bottom:10px;
+display:flex;
+margin-bottom:10px;
 }
 .stars span{
-  font-size:25px;
-  cursor:pointer;
-  color:#555;
+font-size:25px;
+cursor:pointer;
+color:#555;
 }
 .stars span.selected{
-  color:yellow;
+color:yellow;
 }
 button{
-  background:#7a0014;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  cursor:pointer;
-  border-radius:4px;
-  font-family:'Press Start 2P',cursive;
+background:#7a0014;
+color:white;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+border-radius:4px;
+font-family:'Press Start 2P',cursive;
 }
 button:hover{
-  background:#ff2b45;
+background:#ff2b45;
 }
 .movie-list{
-  max-width:600px;
-  margin:40px auto 0;
+max-width:600px;
+margin:40px auto 0;
 }
 .movie-item{
-  background:#120003;
-  padding:15px;
-  border:1px solid #7a0014;
-  margin-bottom:10px;
-  border-radius:6px;
+background:#120003;
+padding:15px;
+border:1px solid #7a0014;
+margin-bottom:10px;
+border-radius:6px;
 }
 .movie-item h3{
-  margin:0 0 5px 0;
-  color:#ff2b45;
+margin:0 0 5px 0;
+color:#ff2b45;
 }
 .movie-item p{
-  margin:0;
+margin:0;
 }
 .movie-stars span{
-  font-size:20px;
-  color:yellow;
+font-size:20px;
+color:yellow;
 }
 .delete-btn{
-  margin-top:10px;
-  background:#7a0014;
+margin-top:10px;
+background:#7a0014;
 }
 </style>
 </head>
 <body>
+
 <h1>Quarter 4 Movie Rating</h1>
+
 <form id="movieForm">
-  <label for="title">Movie Title:</label>
-  <input type="text" id="title" required>
-  
-  <label for="genre">Genre:</label>
-  <select id="genre" required>
-    <option value="Action">Action</option>
-    <option value="Comedy">Comedy</option>
-    <option value="Drama">Drama</option>
-    <option value="Horror">Horror</option>
-    <option value="Romance">Romance</option>
-    <option value="Sci-Fi">Sci-Fi</option>
-  </select>
-  
-  <label>Rating:</label>
-  <div class="stars">
-    <span data-value="1">&#9733;</span>
-    <span data-value="2">&#9733;</span>
-    <span data-value="3">&#9733;</span>
-    <span data-value="4">&#9733;</span>
-    <span data-value="5">&#9733;</span>
-  </div>
-  
-  <button type="submit">Add Movie</button>
+<label for="title">Movie Title:</label>
+<input type="text" id="title" required>
+
+<label for="genre">Genre:</label>
+<select id="genre" required>
+<option value="Action">Action</option>
+<option value="Comedy">Comedy</option>
+<option value="Drama">Drama</option>
+<option value="Horror">Horror</option>
+<option value="Romance">Romance</option>
+<option value="Sci-Fi">Sci-Fi</option>
+</select>
+
+<label>Rating:</label>
+<div class="stars">
+<span data-value="1">&#9733;</span>
+<span data-value="2">&#9733;</span>
+<span data-value="3">&#9733;</span>
+<span data-value="4">&#9733;</span>
+<span data-value="5">&#9733;</span>
+</div>
+
+<button type="submit">Add Movie</button>
 </form>
 
 <div class="movie-list" id="movieList"></div>
 
 <script>
-let selectedRating = 0;
-const stars = document.querySelectorAll(".stars span");
-stars.forEach(star => {
-  star.addEventListener("click", () => {
-    selectedRating = parseInt(star.getAttribute("data-value"));
-    stars.forEach(s => {
-      s.classList.toggle("selected", parseInt(s.getAttribute("data-value")) <= selectedRating);
-    });
-  });
+let selectedRating=0;
+const stars=document.querySelectorAll(".stars span");
+
+stars.forEach(star=>{
+star.addEventListener("click",()=>{
+selectedRating=parseInt(star.getAttribute("data-value"));
+stars.forEach(s=>{
+s.classList.toggle("selected",parseInt(s.getAttribute("data-value"))<=selectedRating);
+});
+});
 });
 
-const form = document.getElementById("movieForm");
-const movieList = document.getElementById("movieList");
+const form=document.getElementById("movieForm");
+const movieList=document.getElementById("movieList");
 
 function loadMovies(){
-  movieList.innerHTML = "";
-  const movies = JSON.parse(localStorage.getItem("movies") || "[]");
-  movies.forEach((movie,index) => {
-    const div = document.createElement("div");
-    div.classList.add("movie-item");
-    div.innerHTML = `
-      <h3>${movie.title}</h3>
-      <p>Genre: ${movie.genre}</p>
-      <div class="movie-stars">${"&#9733;".repeat(Math.round(movie.rating))}</div>
-      <button class="delete-btn" onclick="deleteMovie(${index})">Delete</button>
-    `;
-    movieList.appendChild(div);
-  });
+movieList.innerHTML="";
+const movies=JSON.parse(localStorage.getItem("movies")||"[]");
+
+movies.forEach((movie,index)=>{
+const div=document.createElement("div");
+div.classList.add("movie-item");
+
+let starHTML="";
+for(let i=0;i<Math.round(movie.rating);i++){
+starHTML+="&#9733;";
+}
+
+div.innerHTML=`
+<h3>${movie.title}</h3>
+<p>Genre: ${movie.genre}</p>
+<div class="movie-stars">${starHTML}</div>
+<button class="delete-btn" onclick="deleteMovie(${index})">Delete</button>
+`;
+
+movieList.appendChild(div);
+});
 }
 
 function deleteMovie(index){
-  const confirmDelete = confirm("Are you sure you want to delete this movie?");
-  if(confirmDelete){
-    const movies = JSON.parse(localStorage.getItem("movies") || "[]");
-    movies.splice(index,1);
-    localStorage.setItem("movies", JSON.stringify(movies));
-    loadMovies();
-  }
+const confirmDelete=confirm("Are you sure you want to delete this movie?");
+if(confirmDelete){
+const movies=JSON.parse(localStorage.getItem("movies")||"[]");
+movies.splice(index,1);
+localStorage.setItem("movies",JSON.stringify(movies));
+loadMovies();
+}
 }
 
-form.addEventListener("submit", e=>{
-  e.preventDefault();
-  const title = document.getElementById("title").value;
-  const genre = document.getElementById("genre").value;
-  if(selectedRating === 0){
-    alert("Please select a rating!");
-    return;
-  }
+form.addEventListener("submit",e=>{
+e.preventDefault();
 
-  const movies = JSON.parse(localStorage.getItem("movies") || "[]");
+const title=document.getElementById("title").value;
+const genre=document.getElementById("genre").value;
 
-  const existingMovie = movies.find(movie => movie.title.toLowerCase() === title.toLowerCase());
+if(selectedRating===0){
+alert("Please select a rating!");
+return;
+}
 
-  if(existingMovie){
-    existingMovie.rating = (existingMovie.rating + selectedRating) / 2;
-    existingMovie.genre = genre;
-  } else {
-    movies.push({title, genre, rating: selectedRating});
-  }
+const movies=JSON.parse(localStorage.getItem("movies")||"[]");
 
-  localStorage.setItem("movies", JSON.stringify(movies));
+const existingMovie=movies.find(movie=>movie.title.toLowerCase()===title.toLowerCase());
 
-  form.reset();
-  stars.forEach(s => s.classList.remove("selected"));
-  selectedRating = 0;
+if(existingMovie){
+existingMovie.rating=(existingMovie.rating+selectedRating)/2;
+existingMovie.genre=genre;
+}else{
+movies.push({title,genre,rating:selectedRating});
+}
 
-  loadMovies();
+localStorage.setItem("movies",JSON.stringify(movies));
+
+form.reset();
+stars.forEach(s=>s.classList.remove("selected"));
+selectedRating=0;
+
+loadMovies();
 });
 
 loadMovies();
 </script>
+
 </body>
 </html>
