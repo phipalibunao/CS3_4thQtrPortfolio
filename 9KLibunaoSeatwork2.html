@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Your Name & Partner Name" />
+  <meta name="revised" content="March 27, 2026" />
+  <title>PotassiumLibunaoseatwork2</title>
+  
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        height: 2000px; 
+    }
+
+    .header, .footer {
+      background: lightblue;
+      padding: 10px;
+    }
+    .footer {
+      opacity: 0.5;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .sidebar {
+      background: lightgreen;
+      width: 150px;
+      height: 200px;
+      position: relative; 
+      top: 20px; 
+      left: 20px;
+    }
+
+    .content {
+      background: lightyellow;
+      width: 300px;
+      height: 200px;
+      position: absolute; 
+      top: 66px; 
+      left: 200px;
+      z-index: 1;
+    }    
+
+    .notice {
+      position: absolute;
+      top: 60px;
+      left: 400px;
+      background: orange;
+      padding: 10px;
+      z-index: 2;
+    }
+
+    .top-right-challenge {
+        top: 0 !important;
+        right: 0 !important;
+        left: auto !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Header</div>
+  <div class="sidebar">Sidebar (Relative)</div>
+  <div class="content">
+    Main Content (Absolute)
+    </div>
+  <div class="notice">Notice! (Z-index: 2)</div>
+  <div class="footer">Footer (Fixed)</div>
+  </div>
+
+</body>
+</html>
