@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Error Logs - Nlogonia</title>
+<meta name="author" content="Phipa Libunao">
+
+<!-- fonts kasi aesthetic is important 😌 -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* main vibe: dark, hacker, medyo dramatic */
+body{
+margin:0;
+height:100vh;
+font-family:'Poppins',sans-serif;
+background:#050000;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+/* main window (parang system panel) */
+.window{
+width:90%;
+max-width:1100px;
+height:85vh;
+background:#0c0c0c;
+border:2px solid #7a0014;
+box-shadow:0 0 30px rgba(255,43,69,.5);
+display:flex;
+flex-direction:column;
+}
+
+/* title bar sa taas */
+.title-bar{
+background:linear-gradient(90deg,#2b0006,#7a0014);
+font-family:'Press Start 2P',cursive;
+font-size:.8rem;
+padding:12px;
+letter-spacing:2px;
+}
+
+/* content area */
+.content{
+padding:25px;
+overflow:auto;
+}
+
+/* header */
+h1{
+font-family:'Press Start 2P',cursive;
+font-size:1rem;
+color:#ff2b45;
+margin-bottom:20px;
+}
+
+/* table styling para clean pero may aesthetic pa rin */
+table{
+width:100%;
+border-collapse:collapse;
+background:#120003;
+box-shadow:0 0 15px rgba(255,43,69,.3);
+}
+
+th, td{
+border:1px solid #7a0014;
+padding:10px;
+font-size:.85rem;
+}
+
+/* header ng table */
+th{
+background:#7a0014;
+font-family:'Press Start 2P',cursive;
+font-size:.7rem;
+color:white;
+}
+
+/* alternating rows para hindi nakakalito */
+tr:nth-child(even){
+background:#1b0005;
+}
+
+/* hover effect kasi why not */
+tr:hover{
+background:#7a0014;
+transition:.3s;
+}
+
+/* code highlight (important for errors) */
+code{
+color:#00f0ff;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="window">
+
+<div class="title-bar">
+ERROR LOGS SYSTEM
+</div>
+
+<div class="content">
+
+<h1>🛠 Debugging Report</h1>
+
+<table>
+<tr>
+<th>#</th>
+<th>Line</th>
+<th>Type</th>
+<th>Error</th>
+<th>Correction</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>78</td>
+<td>JavaScript</td>
+<td>I used <code>=</code> instead of a comparison operator so it wasn’t checking properly</td>
+<td>Changed <code>if (X = N)</code> to <code>if (X === N)</code></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>82</td>
+<td>JavaScript</td>
+<td>I didn't quotation marks so JS thought it was a variable 😭</td>
+<td>Changed <code>return NE</code> to <code>return "NE"</code></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>85</td>
+<td>JavaScript</td>
+<td>There was an extra semicolon which basically ended the condition early</td>
+<td>Removed the semicolon after <code>else if (...)</code></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>70</td>
+<td>JavaScript</td>
+<td>I forgot commas between parameters so the function was invalid</td>
+<td>Changed <code>(N M X Y)</code> to <code>(N, M, X, Y)</code></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>95</td>
+<td>JavaScript</td>
+<td>I used the wrong capitalization lol</td>
+<td>Changed <code>getElementByID</code> to <code>getElementById</code></td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>18</td>
+<td>CSS</td>
+<td>I used a value that doesn’t even exist for position</td>
+<td>Changed <code>position: center;</code> to <code>text-align: center;</code></td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>25</td>
+<td>CSS</td>
+<td>I didn't add a unit so the browser ignored it</td>
+<td>Changed <code>width: 100</code> to <code>width: 100px</code></td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>30</td>
+<td>CSS</td>
+<td>I wrote the property wrong (missing hyphen)</td>
+<td>Changed <code>background color</code> to <code>background-color</code></td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>35</td>
+<td>CSS</td>
+<td>I used an invalid value for float (“middle” is not a thing)</td>
+<td>Changed <code>float: middle;</code> to <code>margin: auto;</code></td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>42</td>
+<td>CSS</td>
+<td>I forgot the colon and semicolon so the whole rule broke</td>
+<td>Changed <code>position absolute</code> to <code>position: absolute;</code></td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+</body>
+</html>
