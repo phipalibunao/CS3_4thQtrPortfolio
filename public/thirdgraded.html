@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="Phipa Libunao">
+<title>Nlogonia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+font-family:'Poppins',sans-serif;
+background:#050000;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.desktop-window{
+width:85%;
+max-width:1000px;
+height:85vh;
+background:#0c0c0c;
+border:2px solid #7a0014;
+box-shadow:0 0 30px rgba(255,43,69,.5);
+display:flex;
+flex-direction:column;
+position:absolute;
+}
+
+.title-bar{
+background:linear-gradient(90deg,#2b0006,#7a0014);
+font-family:'Press Start 2P',cursive;
+font-size:.8rem;
+padding:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:move;
+}
+
+.window-content{
+flex:1;
+display:flex;
+overflow:hidden;
+}
+
+.sidebar{
+width:200px;
+background:#120003;
+border-right:1px solid #7a0014;
+padding:20px;
+}
+
+.sidebar h2{
+font-family:'Press Start 2P';
+font-size:.7rem;
+color:#ff2b45;
+margin-bottom:20px;
+}
+
+.sidebar a{
+display:block;
+color:white;
+text-decoration:none;
+background:#1b0005;
+border:1px solid #7a0014;
+padding:10px;
+margin-bottom:10px;
+}
+
+.main{
+flex:1;
+padding:30px;
+background:rgba(0,0,0,0.6);
+overflow:auto;
+}
+
+h1{
+font-family:'Press Start 2P';
+color:#ff2b45;
+font-size:1rem;
+}
+
+input{
+margin:5px;
+padding:8px;
+background:black;
+border:1px solid #ff2b45;
+color:white;
+}
+
+button{
+padding:10px;
+background:#7a0014;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+#result{
+margin-top:15px;
+font-weight:bold;
+color:#ff2b45;
+}
+
+.plane{
+position:relative;
+width:350px;
+height:350px;
+border:2px solid #ff2b45;
+margin-top:20px;
+}
+
+.axis-x, .axis-y{
+position:absolute;
+background:white;
+}
+
+.axis-x{
+top:50%;
+width:100%;
+height:2px;
+}
+
+.axis-y{
+left:50%;
+height:100%;
+width:2px;
+}
+
+.division-x{
+position:absolute;
+width:2px;
+height:100%;
+background:red;
+}
+
+.division-y{
+position:absolute;
+height:2px;
+width:100%;
+background:red;
+}
+
+.point{
+position:absolute;
+width:10px;
+height:10px;
+background:#00f0ff;
+border-radius:50%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="desktop-window" id="window">
+
+<div class="title-bar" id="dragBar">
+NLOGONIA SYSTEM
+</div>
+
+<div class="window-content">
+
+<div class="sidebar">
+<h2>📁 MENU</h2>
+<a href="#">Locator</a>
+<a href="#">Logs</a>
+</div>
+
+<div class="main">
+<h1>Nlogonia Locator</h1>
+
+<p>enter division point and residence:</p>
+
+<input id="N" placeholder="N">
+<input id="M" placeholder="M"><br>
+
+<input id="X" placeholder="X">
+<input id="Y" placeholder="Y"><br>
+
+<button onclick="process()">Output</button>
+
+<div id="result"></div>
+
+<div class="plane" id="plane">
+<div class="axis-x"></div>
+<div class="axis-y"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+const windowEl=document.getElementById("window");
+const dragBar=document.getElementById("dragBar");
+
+let isDown=false,offsetX,offsetY;
+
+dragBar.addEventListener("mousedown",e=>{
+isDown=true;
+offsetX=e.clientX-windowEl.offsetLeft;
+offsetY=e.clientY-windowEl.offsetTop;
+});
+
+document.addEventListener("mouseup",()=>isDown=false);
+
+document.addEventListener("mousemove",e=>{
+if(!isDown)return;
+windowEl.style.left=e.clientX-offsetX+"px";
+windowEl.style.top=e.clientY-offsetY+"px";
+windowEl.style.position="absolute";
+});
+
+// logic
+function getRegion(N,M,X,Y){
+if(X===N || Y===M) return "divisa";
+if(X>N && Y>M) return "NE";
+if(X<N && Y>M) return "NO";
+if(X>N && Y<M) return "SE";
+return "SO";
+}
+
+function process(){
+let N=parseInt(document.getElementById("N").value);
+let M=parseInt(document.getElementById("M").value);
+let X=parseInt(document.getElementById("X").value);
+let Y=parseInt(document.getElementById("Y").value);
+
+let result=getRegion(N,M,X,Y);
+document.getElementById("result").innerText="Result: "+result;
+
+drawPlane(N,M,X,Y);
+}
+
+function drawPlane(N,M,X,Y){
+let plane=document.getElementById("plane");
+
+plane.innerHTML=`
+<div class="axis-x"></div>
+<div class="axis-y"></div>
+`;
+
+let scale=8;
+
+let dx=document.createElement("div");
+dx.className="division-x";
+dx.style.left=(175+N*scale)+"px";
+
+let dy=document.createElement("div");
+dy.className="division-y";
+dy.style.top=(175-M*scale)+"px";
+
+plane.appendChild(dx);
+plane.appendChild(dy);
+
+let p=document.createElement("div");
+p.className="point";
+p.style.left=(175+X*scale-5)+"px";
+p.style.top=(175-Y*scale-5)+"px";
+
+plane.appendChild(p);
+}
+</script>
+
+</body>
+</html>
